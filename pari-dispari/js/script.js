@@ -30,28 +30,24 @@ function isEven(number) {
 
 // memorizzo in una variabile la scelta dell'utente (pari o dispari) 
 const userChoice = prompt("Pari o dispari?");
-// const userChoice = "pari";
-console.log(userChoice);
-// test
 
 // memorizzo in una variabile il numero scelto dall'utente
 const userNumber = prompt("Inserisci un numero da 1 a 5");
-// const userNumber = 3;
-console.log(userNumber);
-// test
+
 
 // memorizzo in una variabile il numero generato dal computer
 const computerNumber = randomComputerNumber();
-console.log(computerNumber);
+
+document.getElementById("user").innerHTML = `Hai scelto ${userChoice}, hai lanciato il numero ${userNumber}`;
+document.getElementById("computer").innerHTML = `Il computer ha lanciato ${computerNumber}`;
 
 // memorizzo la somma dei due numeri utilizzando la funzione
 let sum = sumNumbers(Number(userNumber), Number(computerNumber));
-console.log("sum", sum);
 let win = isEven(sum);
-console.log(win);
 
+// controllo se l'utente ha vinto oppure no
 if((win && userChoice == "pari") || (!win && userChoice == "dispari")) {
-    document.getElementById("result").innerHTML = "Hai vinto!";
+    document.getElementById("result").innerHTML = `La somma è ${sum}, HAI VINTO!`;
 } else {
-    document.getElementById("result").innerHTML = "Hai perso!";
+    document.getElementById("result").innerHTML = `La somma è ${sum}, HAI PERSO!`;
 }
