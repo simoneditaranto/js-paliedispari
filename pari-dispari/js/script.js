@@ -81,21 +81,22 @@ playButtonElement.addEventListener("click",
 
         if((!evenButtonElement.classList.contains("active") && !oddButtonElement.classList.contains("active")) ||
             userNumber < 1 || userNumber > 5) {
-                document.getElementById("error").innerHTML = `Non hai scelto pari o dispari, oppure hai inserito un numero non compreso tra 1 e 5`;
-                document.getElementById("user").innerHTML = "";
-                document.getElementById("computer").innerHTML = "";
-                document.getElementById("result").innerHTML = "";
+                document.getElementById("error").innerText = `Non hai scelto pari o dispari, oppure hai inserito un numero non compreso tra 1 e 5`;
+                // document.getElementById("user").innerText = "";
+                // document.getElementById("computer").innerText = "";
+                // document.getElementById("result").innerText = "";
                 
         } else {
 
-            document.getElementById("error").innerHTML = "";
+            document.getElementById("error").innerText = "";
 
             // memorizzo in una variabile il numero generato dal computer
             const computerNumber = randomComputerNumber();
     
             // stampo in pagina i dati 
-            document.getElementById("user").innerHTML = `Hai scelto ${userChoice}, hai lanciato il numero ${userNumber}`;
-            document.getElementById("computer").innerHTML = `Il computer ha lanciato ${computerNumber}`;
+            // document.getElementById("user").innerText = `Hai scelto ${userChoice}, hai lanciato il numero ${userNumber}`;
+            document.querySelector("#user img").src = `./img/${userNumber}.png`;
+            document.getElementById("computer").innerText = `Il computer ha lanciato ${computerNumber}`;
     
             // memorizzo la somma dei due numeri eutilizzando la funzione
             let sum = sumNumbers(Number(userNumber), Number(computerNumber));
@@ -104,9 +105,9 @@ playButtonElement.addEventListener("click",
     
             // controllo se l'utente ha vinto oppure no e stampo in pagina il risultato
             if((win && userChoice == "pari") || (!win && userChoice == "dispari")) {
-                document.getElementById("result").innerHTML = `La somma è ${sum}, HAI VINTO!`;
+                document.getElementById("result").innerText = `La somma è ${sum}, HAI VINTO!`;
             } else {
-                document.getElementById("result").innerHTML = `La somma è ${sum}, HAI PERSO!`;
+                document.getElementById("result").innerText = `La somma è ${sum}, HAI PERSO!`;
             }
 
         }
