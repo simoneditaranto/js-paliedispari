@@ -32,7 +32,7 @@ function isEven(number) {
 let userChoice;
 do{
 
-    userChoice = prompt("Pari o dispari?");
+    userChoice = prompt("pari o dispari?");
 
     if(userChoice != "pari" && userChoice != "dispari") {
         alert("Valore inserito non corretto, riprova")
