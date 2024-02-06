@@ -29,23 +29,44 @@ function isEven(number) {
 
 
 // memorizzo in una variabile la scelta dell'utente (pari o dispari) 
-const userChoice = prompt("Pari o dispari?");
+let userChoice;
+do{
+
+    userChoice = prompt("Pari o dispari?");
+
+    if(userChoice != "pari" && userChoice != "dispari") {
+        alert("Valore inserito non corretto, riprova")
+    }
+
+}while(userChoice != "pari" && userChoice != "dispari");
+
 
 // memorizzo in una variabile il numero scelto dall'utente
-const userNumber = prompt("Inserisci un numero da 1 a 5");
+let userNumber;
+do{
+
+    userNumber = prompt("Inserisci un numero da 1 a 5");
+
+    if(userNumber < 1 || userNumber > 5 || isNaN(userNumber)) {
+        alert("Devi inserire un numero compreso tra 1 e 5");
+    }
+
+} while(userNumber < 1 || userNumber > 5 || isNaN(userNumber));
 
 
 // memorizzo in una variabile il numero generato dal computer
 const computerNumber = randomComputerNumber();
 
+// stampo in pagina i dati 
 document.getElementById("user").innerHTML = `Hai scelto ${userChoice}, hai lanciato il numero ${userNumber}`;
 document.getElementById("computer").innerHTML = `Il computer ha lanciato ${computerNumber}`;
 
-// memorizzo la somma dei due numeri utilizzando la funzione
+// memorizzo la somma dei due numeri eutilizzando la funzione
 let sum = sumNumbers(Number(userNumber), Number(computerNumber));
+// utilizzo la funzione per sapere se il numero è pari o dispari
 let win = isEven(sum);
 
-// controllo se l'utente ha vinto oppure no
+// controllo se l'utente ha vinto oppure no e stampo in pagina il risultato
 if((win && userChoice == "pari") || (!win && userChoice == "dispari")) {
     document.getElementById("result").innerHTML = `La somma è ${sum}, HAI VINTO!`;
 } else {
