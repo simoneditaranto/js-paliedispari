@@ -7,17 +7,42 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>PariDispari</title>
 
+        <!-- style -->
+        <link rel="stylesheet" href="../pari-dispari/css/style.css">
+
     </head>
 
     <body>
 
         <h1>Pari o dispari</h1>
 
-        <div id="user"></div>
+        <div class="container">
 
-        <div id="computer"></div>
+            <div class="user-choice">
 
-        <div id="result"></div>
+                <div class="buttons">
+                    <button id="even">Pari</button>
+                    <button id="odd">Dispari</button>
+                </div>
+
+                <div class="user-number">
+                    <label for="number">Inserisici un numero da 1 a 5</label>
+                    <input id="user-number" type="number" min="1" max="5">
+                </div>
+
+                <button id="play">Gioca</button>
+
+            </div>
+
+            <div id="user"></div>
+
+            <div id="computer"></div>
+
+            <div id="result"></div>
+
+            <div id="error"></div>
+
+        </div>
 
 
         <!-- js -->

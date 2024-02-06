@@ -27,48 +27,89 @@ function isEven(number) {
     }
 }
 
+/* ____________________________________________________________________ */
+
+// memorizzo i miei bottoni
+evenButtonElement = document.querySelector("#even");
+oddButtonElement = document.querySelector("#odd");
 
 // memorizzo in una variabile la scelta dell'utente (pari o dispari) 
 let userChoice;
-do{
 
-    userChoice = prompt("pari o dispari?");
+// memorizzo in una variabile la scelta dell'utente
+// let userNumber = 0;
 
-    if(userChoice != "pari" && userChoice != "dispari") {
-        alert("Valore inserito non corretto, riprova")
+// bottone pari
+evenButtonElement.addEventListener("click", 
+
+    function() {
+
+        evenButtonElement.className = "active";
+        oddButtonElement.className -= "active";
     }
 
-}while(userChoice != "pari" && userChoice != "dispari");
+);
 
+// bottone dispari
+oddButtonElement.addEventListener("click", 
 
-// memorizzo in una variabile il numero scelto dall'utente
-let userNumber;
-do{
+    function() {
 
-    userNumber = prompt("Inserisci un numero da 1 a 5");
-
-    if(userNumber < 1 || userNumber > 5 || isNaN(userNumber)) {
-        alert("Devi inserire un numero compreso tra 1 e 5");
+        oddButtonElement.className = "active";
+        evenButtonElement.className -= "active";
+     
     }
 
-} while(userNumber < 1 || userNumber > 5 || isNaN(userNumber));
+);
+
+// memorizzo il mio bottone "gioca"
+playButtonElement = document.querySelector("#play");
+playButtonElement.addEventListener("click",
+    function() {
 
 
-// memorizzo in una variabile il numero generato dal computer
-const computerNumber = randomComputerNumber();
+        let userNumber;
 
-// stampo in pagina i dati 
-document.getElementById("user").innerHTML = `Hai scelto ${userChoice}, hai lanciato il numero ${userNumber}`;
-document.getElementById("computer").innerHTML = `Il computer ha lanciato ${computerNumber}`;
+        // memorizzo la scelta dell'utente
+        if(evenButtonElement.classList.contains("active")) {
+            userChoice = "pari";
+        } else {
+            userChoice = "dispari";
+        }
 
-// memorizzo la somma dei due numeri eutilizzando la funzione
-let sum = sumNumbers(Number(userNumber), Number(computerNumber));
-// utilizzo la funzione per sapere se il numero è pari o dispari
-let win = isEven(sum);
+        userNumber = document.querySelector("#user-number").value;
 
-// controllo se l'utente ha vinto oppure no e stampo in pagina il risultato
-if((win && userChoice == "pari") || (!win && userChoice == "dispari")) {
-    document.getElementById("result").innerHTML = `La somma è ${sum}, HAI VINTO!`;
-} else {
-    document.getElementById("result").innerHTML = `La somma è ${sum}, HAI PERSO!`;
-}
+        if((!evenButtonElement.classList.contains("active") && !oddButtonElement.classList.contains("active")) ||
+            userNumber < 1 || userNumber > 5) {
+                document.getElementById("error").innerHTML = `Non hai scelto pari o dispari, oppure hai inserito un numero non compreso tra 1 e 5`;
+                document.getElementById("user").innerHTML = "";
+                document.getElementById("computer").innerHTML = "";
+                document.getElementById("result").innerHTML = "";
+                
+        } else {
+
+            document.getElementById("error").innerHTML = "";
+
+            // memorizzo in una variabile il numero generato dal computer
+            const computerNumber = randomComputerNumber();
+    
+            // stampo in pagina i dati 
+            document.getElementById("user").innerHTML = `Hai scelto ${userChoice}, hai lanciato il numero ${userNumber}`;
+            document.getElementById("computer").innerHTML = `Il computer ha lanciato ${computerNumber}`;
+    
+            // memorizzo la somma dei due numeri eutilizzando la funzione
+            let sum = sumNumbers(Number(userNumber), Number(computerNumber));
+            // utilizzo la funzione per sapere se il numero è pari o dispari
+            let win = isEven(sum);
+    
+            // controllo se l'utente ha vinto oppure no e stampo in pagina il risultato
+            if((win && userChoice == "pari") || (!win && userChoice == "dispari")) {
+                document.getElementById("result").innerHTML = `La somma è ${sum}, HAI VINTO!`;
+            } else {
+                document.getElementById("result").innerHTML = `La somma è ${sum}, HAI PERSO!`;
+            }
+
+        }
+
+    }
+)
